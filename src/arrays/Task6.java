@@ -1,10 +1,10 @@
-package Arrays;
+package arrays;
 
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Task_6 {
+public class Task6 {
     public static void print(int[][] matrix) {
         for (int[] ints : matrix) {
             for (int j = 0; j < matrix[0].length; j++)
@@ -13,7 +13,7 @@ public class Task_6 {
         }
     }
 
-    public static int max_element(int[][] matrix) {
+    public static int maxElement(int[][] matrix) {
         int max = matrix[0][0];
         for (int[] ints : matrix) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -24,7 +24,7 @@ public class Task_6 {
         return max;
     }
 
-    public static int[][] create_matrix() {
+    public static int[][] createMatrix() {
         out.print("Enter the rows in the matrix: ");
         Scanner console = new Scanner(System.in);
         int row = console.nextInt();
@@ -43,11 +43,11 @@ public class Task_6 {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = create_matrix();
+        int[][] matrix = createMatrix();
 
         out.println("Matrix:");
         print(matrix);
 
-        out.print("MAX = " + max_element(matrix));
+        out.print("MAX = " + maxElement(matrix));
     }
 }

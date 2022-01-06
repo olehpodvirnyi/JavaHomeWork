@@ -1,12 +1,12 @@
-package Arrays;
+package arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Task_1 {
-    public static int get_k(Scanner console) {
+public class Task1 {
+    public static int getK(Scanner console) {
         out.print("Enter k: ");
         return console.nextInt();
     }
@@ -17,10 +17,10 @@ public class Task_1 {
         out.print("Enter the length of the array: ");
         int[] array = new int[console.nextInt()];
 
-        int k = get_k(console);
+        int k = getK(console);
         while (k <= 0 || k > array.length) {
             out.println("ERROR (k<0 or k>= array_length) !!!");
-            k = get_k(console);
+            k = getK(console);
         }
 
         for (int i = 0; i < array.length; i++) {

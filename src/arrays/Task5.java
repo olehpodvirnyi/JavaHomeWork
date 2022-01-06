@@ -1,27 +1,27 @@
-package Arrays;
+package arrays;
 
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Task_5 {
+public class Task5 {
     public static int[][] transpose(int[][] matrix) {
-        int[][] t_matr = new int[matrix[0].length][matrix.length];
+        int[][] tMatr = new int[matrix[0].length][matrix.length];
         for (int i = 0; i < matrix[0].length; i++)
             for (int j = 0; j < matrix.length; j++)
-                t_matr[i][j] = matrix[j][i];
-        return t_matr;
+                tMatr[i][j] = matrix[j][i];
+        return tMatr;
     }
 
     public static void print(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++)
-                System.out.print(matrix[i][j] + " ");
-            System.out.print("\n");
+                out.print(matrix[i][j] + " ");
+            out.print("\n");
         }
     }
 
-    public static int[][] create_matrix() {
+    public static int[][] createMatrix() {
         out.print("Enter the rows in the matrix: ");
         Scanner console = new Scanner(System.in);
         int row = console.nextInt();
@@ -40,7 +40,7 @@ public class Task_5 {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = create_matrix();
+        int[][] matrix = createMatrix();
 
         out.println("Matrix:");
         print(matrix);

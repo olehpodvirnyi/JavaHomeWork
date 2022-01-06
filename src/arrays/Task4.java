@@ -1,11 +1,11 @@
-package Arrays;
+package arrays;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.System.out;
 
-public class Task_4 {
+public class Task4 {
     public static void main(String[] args) {
         int[] array = new int[]{1, 1, 1, 1, 5, 5, 6, 9, 5, 7, 5, 6, 6, 1, 9, 9, 9, 9, 9};
 

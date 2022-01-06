@@ -1,4 +1,4 @@
-package Arrays;
+package arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import static java.lang.System.out;
 
-public class Task_2 {
+public class Task2 {
 
     public static void main(String[] args) {
         int[] arrayFirst = new int[]{1, 5, 7, 6, 1};
