@@ -14,9 +14,9 @@ public class Task5 {
     }
 
     public static void print(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] ints : matrix) {
             for (int j = 0; j < matrix[0].length; j++)
-                out.print(matrix[i][j] + " ");
+                out.print(ints[j] + " ");
             out.print("\n");
         }
     }
