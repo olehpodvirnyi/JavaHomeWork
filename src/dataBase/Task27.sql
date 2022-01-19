@@ -18,6 +18,9 @@ CREATE TABLE IF NOT EXISTS Student
     FOREIGN KEY (class_id) REFERENCES Class (class_id)
 );
 
+ALTER TABLE work2.class
+    CONVERT TO CHARACTER SET utf8;
+
 INSERT INTO class (class_id, class_name)
 VALUES (1, '1-А'),
        (2, '1-B'),

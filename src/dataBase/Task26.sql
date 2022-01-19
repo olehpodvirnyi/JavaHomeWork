@@ -49,6 +49,9 @@ CREATE TABLE IF NOT EXISTS Teacher
 Заповнити їх даними
 */
 
+ALTER TABLE work1.School
+    CONVERT TO CHARACTER SET utf8;
+
 INSERT INTO School(school_id, school_name, school_address, private_school)
 VALUES (1, 'Lyceum №6', 'United_Kingdom Constable Franklee_Lane 44', TRUE),
        (2, 'Lyceum №20', 'United_Kingdom Cle_Elum Goodwin_Avenue 12', TRUE),
@@ -112,22 +115,38 @@ ALTER TABLE School
     ADD country   varchar(40) AFTER school_address;
 
 
-UPDATE School as s1
-SET s1.country=(SELECT SUBSTRING_INDEX(school_address, ' ', 1)
-                FROM School as s2
-                WHERE s2.school_id = s1.school_id);
-UPDATE School as s1
-SET s1.city = (SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(school_address, ' ', 2), ' ', -1)
-               FROM School as s2
-               WHERE s2.school_id = s1.school_id);
-UPDATE School as s1
-SET s1.street = (SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(school_address, ' ', -2), ' ', 1)
-                 FROM School as s2
-                 WHERE s2.school_id = s1.school_id);
-UPDATE School as s1
-SET s1.st_number = (SELECT SUBSTRING_INDEX(school_address, ' ', -1)
-                    FROM School as s2
-                    WHERE s2.school_id = s1.school_id);
+UPDATE
+    School AS s1,
+    (SELECT school_id,
+            SUBSTRING_INDEX(school_address, ' ', 1) AS address
+     FROM School) AS s2
+SET s1.country = s2.address
+WHERE s2.school_id = s1.school_id;
+
+UPDATE
+    School AS s1,
+    (SELECT school_id,
+            SUBSTRING_INDEX(SUBSTRING_INDEX(school_address, ' ', 2), ' ', -1) AS address
+     FROM School) AS s2
+SET s1.city = s2.address
+WHERE s2.school_id = s1.school_id;
+
+UPDATE
+    School AS s1,
+    (SELECT school_id,
+            SUBSTRING_INDEX(SUBSTRING_INDEX(school_address, ' ', -2), ' ', 1) AS address
+     FROM School) AS s2
+SET s1.street = s2.address
+WHERE s2.school_id = s1.school_id;
+
+UPDATE
+    School AS s1,
+    (SELECT school_id,
+            SUBSTRING_INDEX(school_address, ' ', -1) AS address
+     FROM School) AS s2
+SET s1.st_number = s2.address
+WHERE s2.school_id = s1.school_id;
+
 
 ALTER TABLE School
     DROP school_address;
@@ -169,7 +188,7 @@ WHERE class_id IS NULL;
 SELECT student_name,
        avg_mark
 FROM Student
-ORDER BY avg_mark DESC, student_name ASC
+ORDER BY avg_mark DESC, student_name
 LIMIT 5;
 
 /*
