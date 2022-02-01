@@ -16,4 +16,5 @@ public class Task20 {
                 .filter(element -> element % 2 != 0)
                 .forEach(element -> out.print(element + " "));
     }
+
 }

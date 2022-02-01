@@ -19,7 +19,6 @@ public class Task24 {
         out.println("\nUTF_16 -> UTF_8   :  " + new String(text.getBytes(StandardCharsets.UTF_16), StandardCharsets.UTF_8));
         out.println("UTF_16 -> UTF_16  :  " + new String(text.getBytes(StandardCharsets.UTF_16), StandardCharsets.UTF_16));
         out.println("UTF_16 -> US_ASCII:  " + new String(text.getBytes(StandardCharsets.UTF_16), StandardCharsets.US_ASCII));
-
     }
 
 }

@@ -17,7 +17,6 @@ public class Task17 {
         books.put("Baba Ramdev", List.of("Manav", "Whispers of Time"));
         books.put("Persistent Systems", List.of("Manav", "Saffron Swords"));
         Map<String, List<String>> result = new HashMap<>();
-
         for (var selectedAuthor : books.keySet())
             for (var book : books.get(selectedAuthor)) {
                 List<String> anotherAuthor = result.put(book, List.of(selectedAuthor));
@@ -27,7 +26,6 @@ public class Task17 {
                     result.put(book, tempAutors);
                 }
             }
-
         result.forEach((k, v) -> {
             out.print("\nBook: " + k + "\nAuthors: ");
             for (var el : v) {

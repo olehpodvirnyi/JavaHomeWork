@@ -1,356 +1,12 @@
-package classes;
+package classes.Task10;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static java.lang.Math.*;
 import static java.lang.System.out;
+import static java.util.Comparator.comparingDouble;
 
-public class Task10 {
-    abstract static class Figure {
-        String name;
-
-        abstract double getSquare();
-
-        abstract void display();
-
-        abstract Boolean isExist();
-    }
-
-    static class TwoDimensional extends Figure {
-        double getSquare() {
-            return 0;
-        }
-
-        double getPerimeter() {
-            return 0;
-        }
-
-        void display() {
-            out.println(name);
-        }
-
-        Boolean isExist() {
-            return true;
-        }
-    }
-
-    static class Triangle extends TwoDimensional {
-        private double a;
-        private double b;
-        private double c;
-
-        Triangle(String name, double a, double b, double c) throws Exception {
-            this.name = name;
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return (a + b > c) && (a + c > b) && (b + c > a) && (a > 0) && (b > 0) && (c > 0);
-        }
-
-        @Override
-        double getSquare() {
-            double p = (a + b + c) / 2;
-            return sqrt(p * (p - a) * (p - b) * (p - c));
-        }
-
-        @Override
-        double getPerimeter() {
-            return a + b + c;
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tSquare: " + getSquare() + "\tPerimeter: " + getPerimeter());
-        }
-    }
-
-    static class Rectangle extends TwoDimensional {
-        private double a;
-        private double b;
-
-        Rectangle(String name, double a, double b, double c) throws Exception {
-            this.name = name;
-            this.a = a;
-            this.b = b;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return (a > 0) && (b > 0);
-        }
-
-        @Override
-        double getSquare() {
-            return a * b;
-        }
-
-        @Override
-        double getPerimeter() {
-            return 2 * (a + b);
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tSquare: " + getSquare() + "\tPerimeter: " + getPerimeter());
-        }
-    }
-
-    static class Rhomb extends TwoDimensional {
-        private double a;
-        private double h;
-
-        Rhomb(String name, double a, double h) throws Exception {
-            this.name = name;
-            this.a = a;
-            this.h = h;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return (a > 0) && (h > 0);
-        }
-
-        @Override
-        double getSquare() {
-            return a * h;
-        }
-
-        @Override
-        double getPerimeter() {
-            return 4 * a;
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tSquare: " + getSquare() + "\tPerimeter: " + getPerimeter());
-        }
-    }
-
-    static class Circle extends TwoDimensional {
-        private double r;
-
-        Circle(String name, double r) throws Exception {
-            this.name = name;
-            this.r = r;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return r > 0;
-        }
-
-        @Override
-        double getSquare() {
-            return PI * pow(r, 2);
-        }
-
-        @Override
-        double getPerimeter() {
-            return 2 * PI * r;
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tSquare: " + getSquare() + "\tPerimeter: " + getPerimeter());
-        }
-    }
-
-    static class ThreeDimensional extends Figure {
-        double getSquare() {
-            return 0;
-        }
-
-        double getSquareSideArea() {
-            return 0;
-        }
-
-        double getVolume() {
-            return 0;
-        }
-
-        void display() {
-            out.println(name);
-        }
-
-        Boolean isExist() {
-            return true;
-        }
-    }
-
-    static class Cube extends ThreeDimensional {
-        private double a;
-
-        Cube(String name, double a) throws Exception {
-            this.name = name;
-            this.a = a;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return a > 0;
-        }
-
-        @Override
-        double getSquare() {
-            return 6 * getSquareSideArea();
-        }
-
-        @Override
-        double getSquareSideArea() {
-            return pow(a, 2);
-        }
-
-        double Perimeter() {
-            return 12 * a;
-        }
-
-        @Override
-        double getVolume() {
-            return pow(a, 3);
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tVolume: " + getVolume() + "\tSquare: " + getSquare() + "\tSquareSideArea: " + getSquareSideArea());
-        }
-
-    }
-
-    static class Sphere extends ThreeDimensional {
-        private double r;
-
-        Sphere(String name, double r) throws Exception {
-            this.name = name;
-            this.r = r;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return r > 0;
-        }
-
-        @Override
-        double getSquare() {
-            return 4 * PI * pow(r, 2);
-        }
-
-        @Override
-        double getVolume() {
-            return 4.0 / 3.0 * PI * pow(r, 3);
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tVolume: " + getVolume() + "\tSquare: " + getSquare() + "\tSquareSideArea: " + getSquareSideArea());
-        }
-    }
-
-    static class Cylinder extends ThreeDimensional {
-        private double r;
-        private double h;
-
-        Cylinder(String name, double r, double h) throws Exception {
-            this.name = name;
-            this.r = r;
-            this.h = h;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return (r > 0) && (h > 0);
-        }
-
-        @Override
-        double getSquare() {
-            return 2 * PI * r * (h + r);
-        }
-
-        @Override
-        double getSquareSideArea() {
-            return 2 * PI * r * h;
-        }
-
-        @Override
-        double getVolume() {
-            return PI * pow(r, 2) * h;
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tVolume: " + getVolume() + "\tSquare: " + getSquare() + "\tSquareSideArea: " + getSquareSideArea());
-        }
-    }
-
-    static class Konus extends ThreeDimensional {
-        private double r;
-        private double h;
-
-        Konus(String name, double r, double h) throws Exception {
-            this.name = name;
-            this.r = r;
-            this.h = h;
-            if (!isExist()) {
-                throw new Exception("[Triangle] Unable to create shape with specified parameters!");
-            }
-        }
-
-        @Override
-        Boolean isExist() {
-            return (r > 0) && (h > 0);
-        }
-
-        double getTvirna() {
-            return sqrt(pow(r, 2) + pow(h, 2));
-        }
-
-        @Override
-        double getSquare() {
-            return getSquareSideArea() * PI * pow(r, 2);
-        }
-
-        @Override
-        double getSquareSideArea() {
-            return PI * r * getTvirna();
-        }
-
-        @Override
-        double getVolume() {
-            return 1.0 / 3.0 * PI * h * pow(r, 2);
-        }
-
-        @Override
-        void display() {
-            out.println(name + "\tVolume: " + getVolume() + "\tSquare: " + getSquare() + "\tSquareSideArea: " + getSquareSideArea());
-        }
-    }
-
+public class Main {
     public static double getSumSquare(Figure figureFirst, Figure figureSecond) throws Exception {
         if ((figureFirst instanceof ThreeDimensional && figureSecond instanceof ThreeDimensional) ||
                 (figureFirst instanceof TwoDimensional && figureSecond instanceof TwoDimensional)) {
@@ -436,29 +92,29 @@ public class Task10 {
 
         out.println("The Two Dimensional figures are sorted by Square:");
         twoDimensionals.stream()
-                .sorted(Comparator.comparingDouble(TwoDimensional::getSquare))
+                .sorted(comparingDouble(TwoDimensional::getSquare))
                 .forEach(TwoDimensional::display);
 
         out.println("\nThe Two Dimensional figures are sorted by Perimeter:");
         twoDimensionals.stream()
-                .sorted(Comparator.comparingDouble(TwoDimensional::getPerimeter))
+                .sorted(comparingDouble(TwoDimensional::getPerimeter))
                 .forEach(TwoDimensional::display);
 
         out.println("\n\t\t3D\n");
 
         out.println("The Three Dimensional figures are sorted by Square:");
         threeDimensionals.stream()
-                .sorted(Comparator.comparingDouble(ThreeDimensional::getSquare))
+                .sorted(comparingDouble(ThreeDimensional::getSquare))
                 .forEach(ThreeDimensional::display);
 
         out.println("\nThe Three Dimensional figures are sorted by Square Side Area:");
         threeDimensionals.stream()
-                .sorted(Comparator.comparingDouble(ThreeDimensional::getSquareSideArea))
+                .sorted(comparingDouble(ThreeDimensional::getSquareSideArea))
                 .forEach(ThreeDimensional::display);
 
         out.println("\nThe Three Dimensional figures are sorted by Volume:");
         threeDimensionals.stream()
-                .sorted(Comparator.comparingDouble(ThreeDimensional::getVolume))
+                .sorted(comparingDouble(ThreeDimensional::getVolume))
                 .forEach(ThreeDimensional::display);
     }
 
@@ -528,8 +184,8 @@ public class Task10 {
         float squareMax2D = console.nextFloat();
         out.print("\n\tResult: \n");
         twoDimensionals.stream()
-                .filter(figure -> perimeterMax2D == 0 || figure.getPerimeter() <= perimeterMax2D)
-                .filter(figure -> squareMax2D == 0 || figure.getSquare() <= squareMax2D)
+                .filter(figure -> perimeterMax2D == 0 || figure.getPerimeter() <= perimeterMax2D
+                        && squareMax2D == 0 || figure.getSquare() <= squareMax2D)
                 .forEach(TwoDimensional::display);
 
         out.println("\n~~~~~~~~~~~Search3D~~~~~~~~~~");
@@ -542,9 +198,9 @@ public class Task10 {
         float volumeMax3D = console.nextFloat();
         out.print("\n\tResult: \n");
         threeDimensionals.stream()
-                .filter(figure -> squareSideArea3D == 0 || figure.getSquareSideArea() <= squareSideArea3D)
-                .filter(figure -> squareMax3D == 0 || figure.getSquare() <= squareMax3D)
-                .filter(figure -> volumeMax3D == 0 || figure.getVolume() <= volumeMax3D)
+                .filter(figure -> squareSideArea3D == 0 || figure.getSquareSideArea() <= squareSideArea3D
+                        && squareMax3D == 0 || figure.getSquare() <= squareMax3D
+                        && volumeMax3D == 0 || figure.getVolume() <= volumeMax3D)
                 .forEach(ThreeDimensional::display);
     }
 
@@ -563,7 +219,5 @@ public class Task10 {
         printSort(figures);
         printMathematicalOperations(figures);
         printfilter(figures);
-
     }
-
 }

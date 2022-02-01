@@ -16,7 +16,10 @@ public class Task23 {
         out.println("Enter text:");
         do {
             inputString = console.nextLine();
-            Arrays.stream(inputString.split(" ")).map(word -> word.replaceAll("[^A-Za-z]", "")).filter(word -> !word.isEmpty() && !word.equals(" ")).forEach(words::add);
+            Arrays.stream(inputString.split(" "))
+                    .map(word -> word.replaceAll("[^A-Za-z]", ""))
+                    .filter(word -> !word.isEmpty() && !word.equals(" "))
+                    .forEach(words::add);
         } while (!inputString.isEmpty());
         out.println("Number of unique words: " + words.stream().distinct().count());
         out.println("\nAll unique words are sorted:");
@@ -36,4 +39,5 @@ public class Task23 {
                 .count();
         out.println("\nNumber of all characters except uppercase characters: " + tempNumber);
     }
+
 }

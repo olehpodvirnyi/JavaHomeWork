@@ -1,11 +1,13 @@
 package string;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
 public class Task7 {
     public static void main(String[] args) {
+        /*
         StringBuffer strBuffer = new StringBuffer();
         boolean addSpace = true;
         Scanner console = new Scanner(System.in);
@@ -35,6 +37,15 @@ public class Task7 {
             }
         }
 
-        out.print("The sum of the line numbers = " + result);
+        out.print("The sum of the line numbers = " + result);*/
+        Scanner console = new Scanner(System.in);
+        out.print("Enter your line: ");
+        String str = console.nextLine();
+        int rez = Arrays.stream(str.split("[^0-9-]"))
+                .filter(element -> !element.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .sum();
+        out.println("Result: "+ rez);
     }
+
 }

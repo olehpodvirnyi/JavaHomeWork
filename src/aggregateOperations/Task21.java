@@ -20,4 +20,5 @@ public class Task21 {
         out.println("SUM: " + arrayList.stream().mapToInt(Integer::intValue).sum());
         out.println("Average: " + arrayList.stream().mapToInt(Integer::intValue).average().getAsDouble());
     }
+
 }
