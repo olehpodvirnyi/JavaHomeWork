@@ -5,6 +5,9 @@ import java.text.NumberFormat;
 import java.util.*;
 
 import static java.lang.System.out;
+import static java.text.DateFormat.FULL;
+import static java.util.Locale.*;
+import static java.util.ResourceBundle.*;
 
 public class Task25 {
     private static final String FOLDER = "ApplicationMessages";
@@ -18,25 +21,25 @@ public class Task25 {
         out.print("Choose a country:");
         switch (console.nextInt()) {
             case 1:
-                bundle = ResourceBundle.getBundle(FOLDER);
+                bundle = getBundle(FOLDER);
                 break;
             case 2:
-                bundle = ResourceBundle.getBundle(FOLDER, Locale.FRANCE);
+                bundle = getBundle(FOLDER, FRANCE);
                 break;
             case 3:
-                bundle = ResourceBundle.getBundle(FOLDER, new Locale("sv", "SE"));
+                bundle = getBundle(FOLDER, new Locale("sv", "SE"));
                 break;
             default:
                 out.println();
-                bundle = ResourceBundle.getBundle(FOLDER);
+                bundle = getBundle(FOLDER);
         }
         printMessages(bundle);
     }
 
     private static void printMessages(ResourceBundle bundle) {
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, bundle.getLocale());
-        out.println("CountryName : " + bundle.getString("CountryName") + bundle.getLocale());
-        out.println("CurrencyCode: " + bundle.getString("CurrencyCode"));
+        DateFormat dateFormat = DateFormat.getDateTimeInstance(FULL, FULL, bundle.getLocale());
+        out.println("CountryName : " + bundle.getString("COUNTRY_NAME") + bundle.getLocale());
+        out.println("CurrencyCode: " + bundle.getString("CURRENCY_CODE"));
         out.println("Today: " + dateFormat.format(new Date()));
         out.println("Base currency: " + Currency.getInstance(bundle.getLocale()).getDisplayName() + ", " +
                 NumberFormat.getCurrencyInstance(bundle.getLocale()).format(1));

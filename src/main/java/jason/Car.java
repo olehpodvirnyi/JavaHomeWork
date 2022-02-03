@@ -1,4 +1,4 @@
-package collections.Task15;
+package jason;
 
 import static java.lang.System.out;
 
@@ -15,6 +15,14 @@ public class Car {
         this.еngineСapacity = engineCapacity;
         this.brand = brand;
         this.bodyType = bodyType;
+    }
+
+    public double getЕngineСapacity() {
+        return еngineСapacity;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public double getEngineCapacity() {
